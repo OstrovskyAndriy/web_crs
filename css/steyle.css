@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f2f2f2;
+}
+
+/* Блок товару */
+.product-block {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  background-color: #f9f9f9;
+  flex-wrap: wrap; /* Дозволяє блокам переноситись на новий рядок */
+}
+
+/* Блок критеріїв пошуку */
+.search-block {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+/* Нижній блок (футер) */
+.footer {
+  padding: 10px;
+  background-color: #f2f2f2;
+  clear: both; /* Очищає обидва боки, щоб футер не налазив на блоки товарів */
+}
+
+/* Стилі для контейнера */
+
+
+/* Блок товару */
+.product-block {
+  background-color: #f9f9f9;
+  min-height: 500px; /* Мінімальна висота поля для товарів */
+}
+
+/* Бокове меню */
+.sidebar {
+  background-color: #3434;
+  min-height: 500px; /* Мінімальна висота бокового меню */
+}
+
+#addButton,
+#deleteButton {
+  display: none;
+  background-color: rgba(0, 149, 255, 0.403);
+}

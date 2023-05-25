@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Мій сайт</title>
+
+    <link rel="stylesheet" href="css/steyle.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Мій сайт</h1>
+
+        <button id="addButton" class="btn btn-primary">Add</button>
+    <button id="deleteButton" class="btn btn-primary">Delete</button>
+
+
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Вхід/Реєстрація
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#loginModal">Вхід</a></li>
+                <li><a class="dropdown-item" href="#" data-toggle="modal"
+                        data-target="#registrationModal">Реєстрація</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- модальне вікно логіну -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Вхід</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Вміст модального вікна для входу -->
+                    <form>
+                        <div class="form-group">
+                            <label for="emailInput">Електронна пошта</label>
+                            <input type="email" class="form-control" id="emailInput"
+                                placeholder="Введіть електронну пошту">
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordInput">Пароль</label>
+                            <input type="password" class="form-control" id="passwordInput" placeholder="Введіть пароль">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+                    <button type="button" class="btn btn-primary" id="loginButton">Увійти</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- модальне вікно реєстрації -->
+    <div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="registrationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registrationModalLabel">Реєстрація</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Форма для реєстрації -->
+                    <form>
+                        <div class="form-group">
+                            <label for="email">Електронна пошта</label>
+                            <input type="email" class="form-control" id="email" placeholder="Введіть електронну пошту">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Пароль</label>
+                            <input type="password" class="form-control" id="password" placeholder="Введіть пароль">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Підтвердження паролю</label>
+                            <input type="password" class="form-control" id="confirmPassword"
+                                placeholder="Підтвердіть пароль">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+                    <button type="button" class="btn btn-primary">Зареєструватись</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-10 order-lg-2 product-block">
+                <!-- Вміст блоку товару -->
+                <div class="row">
+
+                    <div class="col-4">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    
+
+                </div>
+
+
+
+            </div>
+
+
+            <div class="col-lg-2 order-lg-1 sidebar">
+                <!-- Вміст бокового меню -->
+                <div>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Контактна інформація</p>
+        <p>Соціальні мережі магазинів</p>
+    </div>
+
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+<script src="js/main.js"></script>
+
+</html>
