@@ -45,8 +45,42 @@
   min-height: 500px; /* Мінімальна висота бокового меню */
 }
 
-#addButton,
-#deleteButton {
+#addButton {
   display: none;
   background-color: rgba(0, 149, 255, 0.403);
+}
+
+#deleteButton-in-card{
+  background-color: rgba(255, 0, 0, 0.847);
+}
+
+.card {
+  margin: 5px; /* Відступ знизу між карточками */
+  transition: transform 0.3s;
+  position: relative;
+
+}
+.card:hover {
+  transform: scale(1.1); /* Збільшення карточки при наведенні */
+  z-index: 9999; /* Встановлюємо високе значення z-index */
+
+}
+
+#deleteButton-in-card {
+  display: none;
+}
+
+#paginationControls {
+  margin-bottom: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.page-divider {
+  height: 1px;
+  background-color: #ccc;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

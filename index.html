@@ -17,8 +17,7 @@
         <h1>Мій сайт</h1>
 
         <button id="addButton" class="btn btn-primary">Add</button>
-    <button id="deleteButton" class="btn btn-primary">Delete</button>
-
+        <button id="cartButton" class="btn btn-primary" data-toggle="modal" data-target="#cartModal">Корзина</button>
 
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -32,6 +31,28 @@
         </div>
     </div>
 
+    <!-- модальне вікно -->
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cartModalLabel">Корзина</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Вміст корзини -->
+                <p>Тут буде вміст вашої корзини.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+                <button type="button" class="btn btn-primary">Оформити замовлення</button>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- модальне вікно логіну -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
         aria-hidden="true">
@@ -108,56 +129,193 @@
         <div class="row">
             <div class="col-lg-10 order-lg-2 product-block">
                 <!-- Вміст блоку товару -->
-                <div class="row">
+                <div class="row"  id="productList">
 
-                    <div class="col-4">
-                        <p>Lorem ipsum dolor sit amet.</p>
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="img/AMD_Phenom_II_X4_840.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">AMD Phenom II X4 840</h5>
+                            <p class="card-text">
+                                <strong>Частота процесора:</strong> 2.9 GHz до 3.2 GHz<br>
+                                <strong>Сокет процесора:</strong> AM3<br>
+                                <strong>Кількість ядер і потоків:</strong> 4 ядра, 4 потоки<br>
+                                <strong>Ціна:</strong> $99.99
+                            </p>
+                            <a href="#" class="btn btn-primary">В козину</a>
+                            <button class="btn btn-primary" id="deleteButton-in-card">Delete</button>
+                        </div>
                     </div>
-                    <div class="col-4">
-                        <p>Lorem ipsum dolor sit amet.</p>
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="img/AMD_Phenom_II_X4_840.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">AMD Phenom II X4 840</h5>
+                            <p class="card-text">
+                                <strong>Частота процесора:</strong> 2.9 GHz до 3.2 GHz<br>
+                                <strong>Сокет процесора:</strong> AM3<br>
+                                <strong>Кількість ядер і потоків:</strong> 4 ядра, 4 потоки<br>
+                                <strong>Ціна:</strong> $99.99
+                            </p>
+                            <a href="#" class="btn btn-primary">В козину</a>
+                            <button class="btn btn-primary" id="deleteButton-in-card">Delete</button>
+                        </div>
                     </div>
-                    <div class="col-4">
-                        <p>Lorem ipsum dolor sit amet.</p>
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="img/AMD_Phenom_II_X4_840.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">AMD Phenom II X4 840</h5>
+                            <p class="card-text">
+                                <strong>Частота процесора:</strong> 2.9 GHz до 3.2 GHz<br>
+                                <strong>Сокет процесора:</strong> AM3<br>
+                                <strong>Кількість ядер і потоків:</strong> 4 ядра, 4 потоки<br>
+                                <strong>Ціна:</strong> $99.99
+                            </p>
+                            <a href="#" class="btn btn-primary">В козину</a>
+                            <button class="btn btn-primary" id="deleteButton-in-card">Delete</button>
+                        </div>
                     </div>
-                    <div class="col-4">
-                        <p>Lorem ipsum dolor sit amet.</p>
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="img/AMD_Phenom_II_X4_840.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">AMD Phenom II X4 840</h5>
+                            <p class="card-text">
+                                <strong>Частота процесора:</strong> 2.9 GHz до 3.2 GHz<br>
+                                <strong>Сокет процесора:</strong> AM3<br>
+                                <strong>Кількість ядер і потоків:</strong> 4 ядра, 4 потоки<br>
+                                <strong>Ціна:</strong> $99.99
+                            </p>
+                            <a href="#" class="btn btn-primary">В козину</a>
+                            <button class="btn btn-primary" id="deleteButton-in-card">Delete</button>
+                        </div>
                     </div>
-                    <div class="col-4">
-                        <p>Lorem ipsum dolor sit amet.</p>
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="img/AMD_Phenom_II_X4_840.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">AMD Phenom II X4 840</h5>
+                            <p class="card-text">
+                                <strong>Частота процесора:</strong> 2.9 GHz до 3.2 GHz<br>
+                                <strong>Сокет процесора:</strong> AM3<br>
+                                <strong>Кількість ядер і потоків:</strong> 4 ядра, 4 потоки<br>
+                                <strong>Ціна:</strong> $99.99
+                            </p>
+                            <a href="#" class="btn btn-primary">В козину</a>
+                            <button class="btn btn-primary" id="deleteButton-in-card">Delete</button>
+                        </div>
                     </div>
-                    <div class="col-4">
-                        <p>Lorem ipsum dolor sit amet.</p>
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="img/AMD_Phenom_II_X4_840.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">AMD Phenom II X4 840</h5>
+                            <p class="card-text">
+                                <strong>Частота процесора:</strong> 2.9 GHz до 3.2 GHz<br>
+                                <strong>Сокет процесора:</strong> AM3<br>
+                                <strong>Кількість ядер і потоків:</strong> 4 ядра, 4 потоки<br>
+                                <strong>Ціна:</strong> $99.99
+                            </p>
+                            <a href="#" class="btn btn-primary">В козину</a>
+                            <button class="btn btn-primary" id="deleteButton-in-card">Delete</button>
+                        </div>
                     </div>
-                    <div class="col-4">
-                        <p>Lorem ipsum dolor sit amet.</p>
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="img/AMD_Phenom_II_X4_840.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">AMD Phenom II X4 840</h5>
+                            <p class="card-text">
+                                <strong>Частота процесора:</strong> 2.9 GHz до 3.2 GHz<br>
+                                <strong>Сокет процесора:</strong> AM3<br>
+                                <strong>Кількість ядер і потоків:</strong> 4 ядра, 4 потоки<br>
+                                <strong>Ціна:</strong> $99.99
+                            </p>
+                            <a href="#" class="btn btn-primary">В козину</a>
+                            <button class="btn btn-primary" id="deleteButton-in-card">Delete</button>
+                        </div>
                     </div>
-                    <div class="col-4">
-                        <p>Lorem ipsum dolor sit amet.</p>
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="img/AMD_Phenom_II_X4_840.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">AMD Phenom II X4 840</h5>
+                            <p class="card-text">
+                                <strong>Частота процесора:</strong> 2.9 GHz до 3.2 GHz<br>
+                                <strong>Сокет процесора:</strong> AM3<br>
+                                <strong>Кількість ядер і потоків:</strong> 4 ядра, 4 потоки<br>
+                                <strong>Ціна:</strong> $99.99
+                            </p>
+                            <a href="#" class="btn btn-primary">В козину</a>
+                            <button class="btn btn-primary" id="deleteButton-in-card">Delete</button>
+                        </div>
                     </div>
-                    <div class="col-4">
-                        <p>Lorem ipsum dolor sit amet.</p>
-                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="img/AMD_Phenom_II_X4_840.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">AMD Phenom II X4 840</h5>
+                            <p class="card-text">
+                                <strong>Частота процесора:</strong> 2.9 GHz до 3.2 GHz<br>
+                                <strong>Сокет процесора:</strong> AM3<br>
+                                <strong>Кількість ядер і потоків:</strong> 4 ядра, 4 потоки<br>
+                                <strong>Ціна:</strong> $99.99
+                            </p>
+                            <a href="#" class="btn btn-primary">В козину</a>
+                            <button class="btn btn-primary" id="deleteButton-in-card">Delete</button>
+                        </div>
+                    </div> 
                     
-
+                    
                 </div>
-
-
+                <div id="paginationControls"></div>
 
             </div>
-
 
             <div class="col-lg-2 order-lg-1 sidebar">
                 <!-- Вміст бокового меню -->
                 <div>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-                <div>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-                <div>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <h4>Критерії пошуку</h4>
+                    <div class="form-group">
+                        <label for="priceSort">Ціна</label>
+                        <select class="form-control" id="priceSort">
+                            <option value="lowToHigh">Від дешевих до дорогих</option>
+                            <option value="highToLow">Від дорогих до дешевих</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="brandFilter">Марка</label>
+                        <select class="form-control" id="brandFilter">
+                            <option value="amd">AMD</option>
+                            <option value="intel">Intel</option>
+                        </select>
+                    </div>
+                 
+                    
+                    <div class="form-group">
+                        <label for="socketFilter">Сокет процесора</label>
+                        <select class="form-control" id="socketFilter">
+                            <option value="am3">AM3</option>
+                            <option value="am3+">AM3+</option>
+                            <option value="am4">AM4</option>
+                            <option value="1155">1155</option>
+                            <option value="1156">1156</option>
+                            <option value="1150">1150</option>
+                            <option value="1151">1151</option>
+                            <option value="2011">2011</option>
+                            <option value="1200">1200</option>
+                            <option value="1700">1700</option>
+                        </select>
+                    </div>
+
+                       
+                    <div class="form-group">
+                        <label for="clockSpeedSlider">Частота процесора (ГГц)</label>
+                        <div id="clockSpeedSlider"></div>
+                        <div id="clockSpeedValues">Від <span id="clockSpeedMin"></span> до <span id="clockSpeedMax"></span></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coreNumberSlider">Кількість ядер</label>
+                        <div id="coreNumberSlider"></div>
+                        <div id="coreNumberValues">Від <span id="coreNumberMin"></span> до <span id="coreNumberMax"></span></div>
+                    </div>
+                    
                 </div>
             </div>
+            
 
         </div>
     </div>
@@ -171,6 +329,9 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="another/jquery-ui.min.css">
+<script src="another/jquery-ui.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
