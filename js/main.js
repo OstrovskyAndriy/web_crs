@@ -4,6 +4,11 @@ $(document).ready(function () {
   });
 });
 
+document.getElementById('addButton').addEventListener('click', function() {
+  $('#addModal').modal('show');
+});
+
+
 $(document).ready(function () {
   // Обробник події натискання кнопки "Зареєструватись"
   $("#registrationModal button.btn-primary").click(function () {
@@ -33,16 +38,20 @@ document.getElementById('loginButton').addEventListener('click', function () {
   var email = document.getElementById('emailInput').value;
   var password = document.getElementById('passwordInput').value;
   var addButton = document.getElementById('addButton');
-  let cardDeleteButton = document.getElementById('deleteButton-in-card');
-  let loginModal = document.getElementById('loginModal');
+  var cardDeleteButtons = document.getElementsByClassName('deleteButton-in-card');
+  var loginModal = document.getElementById('loginModal');
 
   if (email === 'admin' && password === '123') {
-    addButton.style.display = 'inline-block';
-    cardDeleteButton.style.display = 'inline';
-    $('#loginModal').modal('hide'); // Закриття модального вікна
+      addButton.style.display = 'inline-block';
+      for (var i = 0; i < cardDeleteButtons.length; i++) {
+          cardDeleteButtons[i].style.display = 'inline';
+      }
+      $('#loginModal').modal('hide'); // Закриття модального вікна
   } else {
-    addButton.style.display = 'none';
-    deleteButton.style.display = 'none';
+      addButton.style.display = 'none';
+      for (var i = 0; i < cardDeleteButtons.length; i++) {
+          cardDeleteButtons[i].style.display = 'none';
+      }
   }
 });
 
@@ -143,39 +152,37 @@ $(document).ready(function () {
 
 // пагінація сторінки
 $(document).ready(function () {
-  // Параметри пагінації
-  var productsPerPage = 8; // Кількість товарів на одній сторінці
-  var productList = $("#productList .card"); // Список всіх товарів
-  var totalPages = Math.ceil(productList.length / productsPerPage); // Загальна кількість сторінок
+  var productsPerPage = 8;
+  var productList = $("#productList .card");
+  var totalPages = Math.ceil(productList.length / productsPerPage);
 
-  // Функція для відображення товарів на поточній сторінці
   function showCurrentPage(pageNumber) {
+    productList.hide();
+
     var startIndex = (pageNumber - 1) * productsPerPage;
     var endIndex = startIndex + productsPerPage;
-    productList.hide().slice(startIndex, endIndex).show();
+    productList.slice(startIndex, endIndex).show();
   }
 
-  // Функція для відображення контролів пагінації
-  function showPaginationControls() {
+  function createPaginationControls() {
     var paginationControls = $("#paginationControls");
     paginationControls.empty();
 
-    // Додавання кнопок сторінок
+    if (totalPages <= 1) {
+      return; // Якщо всього одна сторінка, не потрібно створювати контроли пагінації
+    }
+
     for (var i = 1; i <= totalPages; i++) {
       var button = $("<button>").text(i).addClass("paginationButton");
       paginationControls.append(button);
     }
 
-    // Обробка кліку на кнопку сторінки
     $(".paginationButton").on("click", function () {
       var pageNumber = parseInt($(this).text());
       showCurrentPage(pageNumber);
     });
   }
 
-  // Показати першу сторінку по завантаженні
   showCurrentPage(1);
-
-  // Показати контроли пагінації
-  showPaginationControls();
+  createPaginationControls();
 });
