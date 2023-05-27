@@ -1,11 +1,56 @@
 $(document).ready(function () {
+  // Обробник події кліку на всьому документі
+  $(document).click(function (event) {
+    var target = $(event.target);
+
+    // Перевірка, чи елемент, на якому відбувся клік, належить до .dropdown-toggle або .dropdown-menu
+    if (!target.hasClass("dropdown-toggle") && !target.hasClass("dropdown-menu")) {
+      // Закриття всіх відкритих .dropdown-menu
+      $(".dropdown-menu").hide();
+    }
+  });
+
+  // Обробник події кліку на .dropdown-toggle кнопці
   $(".dropdown-toggle").click(function () {
+    // Закриття всіх інших .dropdown-menu перед відкриттям поточного .dropdown-menu
+    $(".dropdown-menu").hide();
     $(this).next('.dropdown-menu').toggle();
   });
 });
 
-document.getElementById('addButton').addEventListener('click', function() {
+
+document.getElementById('addButton').addEventListener('click', function () {
   $('#addModal').modal('show');
+});
+
+// перневірка введених даних
+$(document).ready(function () {
+  // Обробник події кліку на кнопку "Зберегти"
+  $("#saveButton").click(function () {
+    var errorMessages = [];
+
+    // Перевірка полів для заповнення на порожні значення
+    var fields = ["processorPhoto", "processorBrand", "processorSocket", "processorModel", "processorFrequency", "processorCores", "processorThreads", "processorPrice"];
+    for (var i = 0; i < fields.length; i++) {
+      var field = $("#" + fields[i]);
+      if (field.val() === "") {
+        errorMessages.push("Поле \"" + field.attr("placeholder") + "\" є обов'язковим.");
+      }
+    }
+
+    // Показ помилок, якщо такі є
+    if (errorMessages.length > 0) {
+      var errorMessage = "При додаванні виникли наступні помилки:\n" + errorMessages.join("\n");
+      alert(errorMessage);
+    } else {
+      // Продовжити збереження, якщо немає помилок
+      // Ваш код для збереження даних тут
+      $("#addModal").modal("hide");
+
+      alert("Дані успішно збережено!");
+    }
+  });
+
 });
 
 
@@ -34,24 +79,47 @@ $(document).ready(function () {
   });
 });
 
+
+
+
+
 document.getElementById('loginButton').addEventListener('click', function () {
   var email = document.getElementById('emailInput').value;
   var password = document.getElementById('passwordInput').value;
   var addButton = document.getElementById('addButton');
   var cardDeleteButtons = document.getElementsByClassName('deleteButton-in-card');
   var loginModal = document.getElementById('loginModal');
+  var cartButton = document.getElementById('cartButton');
+  var addToCartButtons = document.querySelectorAll('.add-to-cart');
 
-  if (email === 'admin' && password === '123') {
-      addButton.style.display = 'inline-block';
-      for (var i = 0; i < cardDeleteButtons.length; i++) {
-          cardDeleteButtons[i].style.display = 'inline';
-      }
-      $('#loginModal').modal('hide'); // Закриття модального вікна
-  } else {
-      addButton.style.display = 'none';
-      for (var i = 0; i < cardDeleteButtons.length; i++) {
-          cardDeleteButtons[i].style.display = 'none';
-      }
+  // адмін
+  if (email === '1' && password === '1') {
+    addButton.style.display = 'inline-block';
+    for (var i = 0; i < cardDeleteButtons.length; i++) {
+      cardDeleteButtons[i].style.display = 'inline';
+    }
+    cartButton.style.display = 'none';
+    addToCartButtons.forEach(function (button) {
+      button.classList.add('d-none');
+    });
+
+    $('#loginModal').modal('hide'); // Закриття модального вікна
+  }
+
+  // звичайний користувач
+  else if (email === '2' && password === '2') {
+    cartButton.style.display = 'inline-block';
+
+    addToCartButtons.forEach(function (button) {
+      button.classList.remove('d-none');
+    });
+    addButton.style.display = 'none';
+
+    for (var i = 0; i < cardDeleteButtons.length; i++) {
+      cardDeleteButtons[i].style.display = 'none';
+    }
+
+    $('#loginModal').modal('hide'); // Закриття модального вікна
   }
 });
 
@@ -89,7 +157,7 @@ $(document).ready(function () {
     // Показати опції сокета, що відповідають вибраній марці
     if (selectedBrand === "amd") {
 
-      socketOptions.filter("[value='am3'], [value='am3+'], [value='am4']").show();
+      socketOptions.filter("[value='AM3'], [value='AM3+'], [value='AM4']").show();
     } else if (selectedBrand === "intel") {
       socketOptions.filter("[value='1155'], [value='1156'], [value='1150'], [value='1151'], [value='2011'], [value='1200'], [value='1700']").show();
     }
@@ -97,6 +165,33 @@ $(document).ready(function () {
   // Виклик події зміни марки, щоб відобразити відповідні опції сокета при завантаженні сторінки
   $("#brandFilter").change();
 });
+
+document.getElementById('processorBrand').addEventListener('change', function () {
+  var brandSelect = document.getElementById('processorBrand');
+  var socketSelect = document.getElementById('processorSocket');
+  var selectedBrand = brandSelect.value;
+
+  // Список сокетів для кожного бренду процесора
+  var socketOptions = {
+    amd: ['AM3', 'AM3+', 'AM4'],
+    intel: ['1155', '1156', '1150', '1151', '1200', '1700', '2011']
+  };
+
+  // Очищення списку сокетів
+  while (socketSelect.options.length > 0) {
+    socketSelect.remove(0);
+  }
+
+  // Додавання нових опцій до списку сокетів залежно від вибраного бренду процесора
+  var sockets = socketOptions[selectedBrand];
+  for (var i = 0; i < sockets.length; i++) {
+    var option = document.createElement('option');
+    option.text = sockets[i];
+    option.value = sockets[i];
+    socketSelect.add(option);
+  }
+});
+
 
 
 
@@ -186,3 +281,4 @@ $(document).ready(function () {
   showCurrentPage(1);
   createPaginationControls();
 });
+

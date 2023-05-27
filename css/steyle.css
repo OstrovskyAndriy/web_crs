@@ -11,6 +11,14 @@
   gap: 10px;
 }
 
+#cartButton{
+  display: none;
+  background-color: rgba(255, 0, 0, 0.847);
+}
+
+.add-to-cart {
+  display: none;
+}
 
 /* Блок товару */
 .product-block {
