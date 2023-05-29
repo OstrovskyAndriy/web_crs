@@ -1,3 +1,4 @@
+// обробник події кліку по вікні якщо якийсь випадаючий список відкритий
 $(document).ready(function () {
   // Обробник події кліку на всьому документі
   $(document).click(function (event) {
@@ -23,7 +24,7 @@ document.getElementById('addButton').addEventListener('click', function () {
   $('#addModal').modal('show');
 });
 
-// перневірка введених даних
+// перневірка введених даних при додаванні нового процесора
 $(document).ready(function () {
   // Обробник події кліку на кнопку "Зберегти"
   $("#saveButton").click(function () {
@@ -53,19 +54,24 @@ $(document).ready(function () {
 
 });
 
-
+// Обробник події натискання кнопки "Зареєструватись"
 $(document).ready(function () {
-  // Обробник події натискання кнопки "Зареєструватись"
+  
   $("#registrationModal button.btn-primary").click(function () {
     var password = $("#password").val();
     var confirmPassword = $("#confirmPassword").val();
+    var email = $("#email").val();
 
+    // Перевірка, чи хоча б одне поле порожнє
+    if (password === "" || confirmPassword === "" || email === "") {
+      alert("Будь ласка, заповніть всі поля!");
+      return; // Зупинка виконання коду
+    }
     // Перевірка, чи паролі збігаються
-    if (password !== confirmPassword) {
+     if (password !== confirmPassword) {
       // Виведення помилки
       alert("Паролі не збігаються!");
-      console.log(password);
-      console.log(confirmPassword);
+     
       return; // Зупинка виконання коду
     }
 
@@ -82,7 +88,7 @@ $(document).ready(function () {
 
 
 
-
+// вхід на сайт
 document.getElementById('loginButton').addEventListener('click', function () {
   var email = document.getElementById('emailInput').value;
   var password = document.getElementById('passwordInput').value;
@@ -91,6 +97,9 @@ document.getElementById('loginButton').addEventListener('click', function () {
   var loginModal = document.getElementById('loginModal');
   var cartButton = document.getElementById('cartButton');
   var addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+  var loginButtonInHeader = document.getElementById('loginButtonInHeader');
+  var exitButton = document.getElementById('exitButton');
 
   // адмін
   if (email === '1' && password === '1') {
@@ -103,6 +112,8 @@ document.getElementById('loginButton').addEventListener('click', function () {
       button.classList.add('d-none');
     });
 
+    loginButtonInHeader.style.display = 'none';
+    exitButton.style.display = 'inline-block';
     $('#loginModal').modal('hide'); // Закриття модального вікна
   }
 
@@ -119,11 +130,13 @@ document.getElementById('loginButton').addEventListener('click', function () {
       cardDeleteButtons[i].style.display = 'none';
     }
 
+    loginButtonInHeader.style.display = 'none';
+    exitButton.style.display = 'inline-block';
     $('#loginModal').modal('hide'); // Закриття модального вікна
   }
 });
 
-
+// слайдер частоти процесора
 $(document).ready(function () {
   // Ініціалізація слайдера
   $("#clockSpeedSlider").slider({
@@ -144,9 +157,9 @@ $(document).ready(function () {
   $("#clockSpeedMax").text($("#clockSpeedSlider").slider("values", 1));
 });
 
-
+// Обробник події зміни вибраної марки
 $(document).ready(function () {
-  // Обробник події зміни вибраної марки
+  
   $("#brandFilter").change(function () {
     var selectedBrand = $(this).val();
     var socketOptions = $("#socketFilter option");
@@ -192,9 +205,7 @@ document.getElementById('processorBrand').addEventListener('change', function ()
   }
 });
 
-
-
-
+// слайдер ядер процесора
 $(document).ready(function () {
   // Масив допустимих варіантів кількості ядер
   var allowedCoreNumbers = [2, 4, 6, 8, 10, 12, 16, 20, 24, 32];
@@ -242,9 +253,6 @@ $(document).ready(function () {
 
 
 
-
-
-
 // пагінація сторінки
 $(document).ready(function () {
   var productsPerPage = 8;
@@ -282,3 +290,6 @@ $(document).ready(function () {
   createPaginationControls();
 });
 
+document.getElementById('exitButton').addEventListener('click', function() {
+  location.reload();
+});
