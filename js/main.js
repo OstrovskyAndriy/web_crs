@@ -170,7 +170,7 @@ $(document).ready(function () {
     // Показати опції сокета, що відповідають вибраній марці
     if (selectedBrand === "amd") {
 
-      socketOptions.filter("[value='AM3'], [value='AM3+'], [value='AM4']").show();
+      socketOptions.filter("[value='am3'], [value='am3+'], [value='am4']").show();
     } else if (selectedBrand === "intel") {
       socketOptions.filter("[value='1155'], [value='1156'], [value='1150'], [value='1151'], [value='2011'], [value='1200'], [value='1700']").show();
     }
