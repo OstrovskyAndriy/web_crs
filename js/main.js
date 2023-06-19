@@ -56,7 +56,7 @@ $(document).ready(function () {
 
 // Обробник події натискання кнопки "Зареєструватись"
 $(document).ready(function () {
-  
+
   $("#registrationModal button.btn-primary").click(function () {
     var password = $("#password").val();
     var confirmPassword = $("#confirmPassword").val();
@@ -68,18 +68,44 @@ $(document).ready(function () {
       return; // Зупинка виконання коду
     }
     // Перевірка, чи паролі збігаються
-     if (password !== confirmPassword) {
+    if (password !== confirmPassword) {
       // Виведення помилки
       alert("Паролі не збігаються!");
-     
+
       return; // Зупинка виконання коду
     }
 
-    // Продовження виконання коду, якщо паролі збігаються
+    var data = {
+      email: email,
+      password: password,
+    };
+    console.log(typeof (data.email));
+    console.log(typeof (data.email));
+    // Виконання AJAX запиту на бекенд
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:5500/api/registration", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
 
-    // Ваш код для обробки та відправки форми реєстрації
-
-    // Закриття модального вікна.
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          if (response.success) {
+            console.log("Користувач успішно зареєстрований");
+            // Виконати необхідні дії, якщо користувач успішно зареєстрований
+          }
+          else {
+            console.log("Помилка реєстрації користувача");
+            // Виконати необхідні дії, якщо сталася помилка реєстрації користувача
+          }
+        }
+        else {
+          console.log("Помилка запиту до сервера");
+          // Виконати необхідні дії, якщо сталася помилка запиту до сервера
+        }
+      }
+    };
+    xhr.send(JSON.stringify(data));
 
     $("#registrationModal").modal("hide");
   });
@@ -101,8 +127,8 @@ document.getElementById('loginButton').addEventListener('click', function () {
   var loginButtonInHeader = document.getElementById('loginButtonInHeader');
   var exitButton = document.getElementById('exitButton');
 
-  // адмін
   if (email === '1' && password === '1') {
+    console.log("admin");
     addButton.style.display = 'inline-block';
     for (var i = 0; i < cardDeleteButtons.length; i++) {
       cardDeleteButtons[i].style.display = 'inline';
@@ -117,24 +143,50 @@ document.getElementById('loginButton').addEventListener('click', function () {
     $('#loginModal').modal('hide'); // Закриття модального вікна
   }
 
-  // звичайний користувач
-  else if (email === '2' && password === '2') {
-    cartButton.style.display = 'inline-block';
+  else {
+    var data = {
+      email: email,
+      password: password
+    };
 
-    addToCartButtons.forEach(function (button) {
-      button.classList.remove('d-none');
-    });
-    addButton.style.display = 'none';
+    // Виконання AJAX запиту на бекенд
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:5500/api/login', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        if (response.success) {
+          console.log('Користувач присутній у системі');
+          // Виконати необхідні дії, якщо користувач присутній
+          cartButton.style.display = 'inline-block';
 
-    for (var i = 0; i < cardDeleteButtons.length; i++) {
-      cardDeleteButtons[i].style.display = 'none';
-    }
+          addToCartButtons.forEach(function (button) {
+            button.classList.remove('d-none');
+          });
+          addButton.style.display = 'none';
 
-    loginButtonInHeader.style.display = 'none';
-    exitButton.style.display = 'inline-block';
-    $('#loginModal').modal('hide'); // Закриття модального вікна
+          for (var i = 0; i < cardDeleteButtons.length; i++) {
+            cardDeleteButtons[i].style.display = 'none';
+          }
+
+          loginButtonInHeader.style.display = 'none';
+          exitButton.style.display = 'inline-block';
+          $('#loginModal').modal('hide'); // Закриття модального вікна
+        }
+
+        else {
+          console.log('Користувача з такою поштою і паролем немає');
+          // Виконати необхідні дії, якщо користувача немає
+        }
+      }
+    };
+    xhr.send(JSON.stringify(data));
+    console.log("send data");
   }
 });
+
+
 
 // слайдер частоти процесора
 $(document).ready(function () {
@@ -159,7 +211,7 @@ $(document).ready(function () {
 
 // Обробник події зміни вибраної марки
 $(document).ready(function () {
-  
+
   $("#brandFilter").change(function () {
     var selectedBrand = $(this).val();
     var socketOptions = $("#socketFilter option");
@@ -290,6 +342,6 @@ $(document).ready(function () {
   createPaginationControls();
 });
 
-document.getElementById('exitButton').addEventListener('click', function() {
+document.getElementById('exitButton').addEventListener('click', function () {
   location.reload();
 });
