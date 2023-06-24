@@ -130,6 +130,28 @@ connection.connect(err => {
       });
     });
 
+
+    //API видалення товару
+    app.delete('/api/deleteProduct/:productId', (req, res) => {
+      const productId = req.params.productId;
+      console.log(productId);
+      // Запит на видалення товару з бази даних
+      const deleteQuery = `DELETE FROM processors WHERE id = ?`;
+    
+      connection.query(deleteQuery, [productId], (err, results) => {
+        if (err) {
+          console.log(err);
+          res.status(500).json({ success: false, message: 'Помилка сервера' });
+        } else {
+          if (results.affectedRows > 0) {
+            res.json({ success: true, message: 'Товар успішно видалено' });
+          } else {
+            res.json({ success: false, message: 'Товар не знайдено' });
+          }
+        }
+      });
+    });
+
     app.listen(port, () => {
       console.log(`Сервер запущено на порті ${port}`);
     });

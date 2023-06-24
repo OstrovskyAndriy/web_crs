@@ -100,6 +100,24 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+// Функція для видалення карточки товару з сайту та бази даних
+function deleteProduct(productId) {
+  // Виконати AJAX-запит до сервера для видалення товару за ідентифікатором productId
+  var xhr = new XMLHttpRequest();
+  xhr.open('DELETE', 'http://localhost:5500/api/deleteProduct/' + productId, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      console.log('Товар успішно видалено');
+    }
+  };
+  xhr.send();
+}
+
+
+// Зберігати відомості про товари
+var productInfo = [];
+
 function createProductCards(processors) {
   var productList = document.getElementById('productList');
   
@@ -153,6 +171,13 @@ function createProductCards(processors) {
 
     // Додати карточку товару до списку
     productList.appendChild(card);
+
+    // Зберегти відомості про товар
+    var product = {
+      card: card,
+      price: processor.price
+    };
+    productInfo.push(product);
   });
 
   pagination();
