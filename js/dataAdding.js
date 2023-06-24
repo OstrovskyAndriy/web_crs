@@ -61,7 +61,7 @@ document.getElementById('saveButton').addEventListener('click', function () {
               const reader = new FileReader();
               reader.onload = function (e) {
                 // Встановити джерело зображення після завантаження
-                image.src = e.target.result;
+                image.src = filePath;
   
                 // Додати інші елементи карточки товару
                 card.innerHTML = `
@@ -106,4 +106,6 @@ document.getElementById('saveButton').addEventListener('click', function () {
       };
       xhr.send(JSON.stringify(data));
     }
-  });
+
+    location.reload();
+ });

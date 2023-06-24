@@ -87,14 +87,14 @@ connection.connect(err => {
     app.post('/api/adding', (req, res) => {
       const { brand, socket, model, frequency, cores, threads, price, filePath } = req.body;
       
-      console.log("model = ",typeof(model),model);
-      console.log("frequency = ",typeof(frequency),frequency);
-      console.log("brand = ",typeof(brand),brand);
-      console.log("socket = ",typeof(socket),socket);
-      console.log("cores = ",typeof(cores),cores);
-      console.log("threads = ",typeof(threads),threads);
-      console.log("price = ",typeof(price),price);
-      console.log("filePath = ",typeof(filePath),filePath);
+      // console.log("model = ",typeof(model),model);
+      // console.log("frequency = ",typeof(frequency),frequency);
+      // console.log("brand = ",typeof(brand),brand);
+      // console.log("socket = ",typeof(socket),socket);
+      // console.log("cores = ",typeof(cores),cores);
+      // console.log("threads = ",typeof(threads),threads);
+      // console.log("price = ",typeof(price),price);
+      // console.log("filePath = ",typeof(filePath),filePath);
 
       // SQL-запит для вставки даних в таблицю processors
       const sql = `INSERT INTO processors (name, frequency, brand, socket, cores, threads, price, photo_path) 
@@ -113,6 +113,22 @@ connection.connect(err => {
       });
     });
 
+
+    //АРІ виводу товарів
+    app.get('/api/getprocessors', (req, res) => {
+      const query = 'SELECT * FROM processors';
+    
+      connection.query(query, (err, results) => {
+        if (err) {
+          console.error('Помилка запиту до бази даних: ', err);
+          res.status(500).send('Помилка сервера');
+          return;
+        }
+        
+        // Відправлення результату як відповідь на запит
+        res.send(results);
+      });
+    });
 
     app.listen(port, () => {
       console.log(`Сервер запущено на порті ${port}`);
