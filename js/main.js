@@ -1,30 +1,6 @@
-// обробник події кліку по вікні якщо якийсь випадаючий список відкритий
-$(document).ready(function () {
-  // Обробник події кліку на всьому документі
-  $(document).click(function (event) {
-    var target = $(event.target);
-
-    // Перевірка, чи елемент, на якому відбувся клік, належить до .dropdown-toggle або .dropdown-menu
-    if (!target.hasClass("dropdown-toggle") && !target.hasClass("dropdown-menu")) {
-      // Закриття всіх відкритих .dropdown-menu
-      $(".dropdown-menu").hide();
-    }
-  });
-
-  // Обробник події кліку на .dropdown-toggle кнопці
-  $(".dropdown-toggle").click(function () {
-    // Закриття всіх інших .dropdown-menu перед відкриттям поточного .dropdown-menu
-    $(".dropdown-menu").hide();
-    $(this).next('.dropdown-menu').toggle();
-  });
-});
-
-
 document.getElementById('addButton').addEventListener('click', function () {
   $('#addModal').modal('show');
 });
-
-
 
 
 // Обробник події зміни вибраної марки
@@ -100,21 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// Функція для видалення карточки товару з сайту та бази даних
-function deleteProduct(productId) {
-  // Виконати AJAX-запит до сервера для видалення товару за ідентифікатором productId
-  var xhr = new XMLHttpRequest();
-  xhr.open('DELETE', 'http://localhost:5500/api/deleteProduct/' + productId, true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      console.log('Товар успішно видалено');
-    }
-  };
-  xhr.send();
-}
-
-
 // Зберігати відомості про товари
 var productInfo = [];
 
@@ -167,18 +128,74 @@ function createProductCards(processors) {
     deleteButton.addEventListener('click', function () {
       deleteProduct(processor.id);
       card.remove();
+      pagination();
+    });
+
+    addToCartButton.addEventListener('click', function () {
+      addToCart(processor.id);
     });
 
     // Додати карточку товару до списку
     productList.appendChild(card);
-
-    // Зберегти відомості про товар
     var product = {
+      id: processor.id,
+      brand: processor.brand,
+      name: processor.name,
       card: card,
       price: processor.price
     };
+    
+    
     productInfo.push(product);
   });
 
   pagination();
+}
+
+// Функція для видалення карточки товару з сайту та бази даних
+function deleteProduct(productId) {
+  // Виконати AJAX-запит до сервера для видалення товару за ідентифікатором productId
+  var xhr = new XMLHttpRequest();
+  xhr.open('DELETE', 'http://localhost:5500/api/deleteProduct/' + productId, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      console.log('Товар успішно видалено');
+    }
+  };
+  xhr.send();
+}
+
+
+// Зберігати відомості про товари в корзині
+var cartItems = [];
+
+// Функція додавання товару в корзину
+function addToCart(productId) {
+  // Отримати товар за його ідентифікатором
+  var product = productInfo.find(function (item) {
+    return item.id === productId;
+  });
+  //console.log(product.id);
+  // Додати товар до корзини
+  cartItems.push(product);
+
+  // Оновити вміст корзини
+  updateCart();
+}
+
+// Функція оновлення вмісту корзини
+function updateCart() {
+  var cartModalBody = document.querySelector('#cartModal .modal-body');
+  cartModalBody.innerHTML = '';
+
+  // Додати кожен товар в корзину до вмісту
+  cartItems.forEach(function (item) {
+    var itemElement = document.createElement('p');
+    itemElement.textContent = item.brand + ' ' + item.name;
+
+    cartModalBody.appendChild(itemElement);
+  });
+  
+ 
 }
