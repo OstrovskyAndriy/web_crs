@@ -85,7 +85,7 @@ connection.connect(err => {
 
     // API додавання процесора
     app.post('/api/adding', (req, res) => {
-      const { brand, socket, model, frequency, cores, threads, price, filePath } = req.body;
+      const { brand, socket, model, frequency, cores, tdp, price, filePath } = req.body;
       
       // console.log("model = ",typeof(model),model);
       // console.log("frequency = ",typeof(frequency),frequency);
@@ -97,11 +97,11 @@ connection.connect(err => {
       // console.log("filePath = ",typeof(filePath),filePath);
 
       // SQL-запит для вставки даних в таблицю processors
-      const sql = `INSERT INTO processors (name, frequency, brand, socket, cores, threads, price, photo_path) 
+      const sql = `INSERT INTO processors (name, frequency, brand, socket, cores, tdp, price, photo_path) 
                VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
 
       // Виконання SQL-запиту з використанням параметрів
-      connection.query(sql, [model, frequency, brand, socket, cores, threads, price, filePath], (err, result) => {
+      connection.query(sql, [model, frequency, brand, socket, cores, tdp, price, filePath], (err, result) => {
         if (err) {
           console.error('Помилка при виконанні SQL-запиту: ', err);
           res.status(500).json({ error: 'Виникла помилка під час збереження даних' });

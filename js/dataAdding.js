@@ -2,7 +2,7 @@ document.getElementById('saveButton').addEventListener('click', function () {
     var errorMessages = [];
   
     // Перевірка полів для заповнення на порожні значення
-    var fields = ["processorBrand", "processorSocket", "processorModel", "processorFrequency", "processorCores", "processorThreads", "processorPrice"];
+    var fields = ["processorBrand", "processorSocket", "processorModel", "processorFrequency", "processorCores", "processorTdp", "processorPrice"];
     for (var i = 0; i < fields.length; i++) {
       var field = $("#" + fields[i]);
       if (field.val() === "") {
@@ -21,7 +21,7 @@ document.getElementById('saveButton').addEventListener('click', function () {
       const model = document.getElementById('processorModel').value;
       const frequency = parseFloat(document.getElementById('processorFrequency').value);
       const cores = parseInt(document.getElementById('processorCores').value);
-      const threads = parseInt(document.getElementById('processorThreads').value);
+      const tdp = parseInt(document.getElementById('processorTdp').value);
       const price = parseFloat(document.getElementById('processorPrice').value);
   
       const filePath = "./img/" + document.getElementById('processorPhoto').files[0].name;
@@ -33,7 +33,7 @@ document.getElementById('saveButton').addEventListener('click', function () {
         brand: brand,
         socket: socket,
         cores: cores,
-        threads: threads,
+        tdp: tdp,
         price: price,
         filePath: filePath
       };
@@ -70,7 +70,8 @@ document.getElementById('saveButton').addEventListener('click', function () {
                     <p class="card-text">
                       <strong>Частота процесора:</strong> ${frequency} GHz<br>
                       <strong>Сокет процесора:</strong> ${socket}<br>
-                      <strong>Кількість ядер і потоків:</strong> ${cores} ядра, ${threads} потоки<br>
+                      <strong>Кількість ядер:</strong> ${cores} ядра<br> 
+                      <strong>TDP:</strong>${tdp} ват<br>
                       <strong>Ціна:</strong> $${price}
                     </p>
                     <a href="#" class="btn btn-primary add-to-cart d-none">В кошик</a>

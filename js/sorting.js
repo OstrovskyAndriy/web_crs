@@ -85,3 +85,33 @@ function getProductSocket(card) {
   var socketText = descriptionElement.innerHTML.match(/<strong>Сокет процесора:<\/strong>\s*([^<]+)<br>/);
   return socketText ? socketText[1] : '';
 }
+
+// Обробник події для фільтрації за назвою процесора
+nameFilter.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
+    applyFilters();
+
+  }
+});
+
+// Функція для застосування фільтрів
+function applyFilters() {
+  var selectedName = nameFilter.value.toLowerCase();
+
+  var filteredProducts = productInfo.filter(function (product) {
+    var processorName = product.card.querySelector('.card-title').textContent.toLowerCase();
+    return processorName.includes(selectedName);
+  });
+
+  // Перемалювати карточки товарів з відфільтрованими даними
+  var filteredCards = filteredProducts.map(function (product) {
+    return product.card;
+  });
+  productList.innerHTML = '';
+  filteredCards.forEach(function (card) {
+    productList.appendChild(card);
+  });
+
+  pagination();
+}
+
