@@ -44,8 +44,6 @@
   clear: both; /* Очищає обидва боки, щоб футер не налазив на блоки товарів */
 }
 
-/* Стилі для контейнера */
-
 
 /* Блок товару */
 .product-block {
@@ -64,6 +62,10 @@
   background-color: rgba(255, 0, 0, 0.847);
 }
 #order {
+  display: none;
+  background-color: rgba(255, 98, 0, 0.666);
+}
+#userOrder{
   display: none;
   background-color: rgba(255, 98, 0, 0.666);
 }

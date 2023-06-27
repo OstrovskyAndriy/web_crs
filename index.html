@@ -15,147 +15,172 @@
 
     <div class="header">
         <h1>Pentium Zone</h1>
-      
+
         <div class="header-buttons">
             <button id="order" class="btn btn-primary" data-toggle="modal" data-target="#orderModal">
                 Замовлення
-              </button>
-              
-          <button id="addButton" class="btn btn-primary">Add</button>
-          <button id="cartButton" class="btn btn-primary" data-toggle="modal" data-target="#cartModal">Корзина</button>
-          <button id="exitButton" class="btn btn-primary">Вийти</button>
-      
-          
-
-          <div class="dropdown" id="loginButtonInHeader">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-              Вхід/Реєстрація
             </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#loginModal">Вхід</a></li>
-              <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#registrationModal">Реєстрація</a></li>
-            </ul>
-          </div>
-      
-        
-        </div>
-      </div>
-      
 
-      <!-- Модальне вікно збережених замовлень -->
-      <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="orderModalLabel">Збережені замовлення</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <!-- Тут будуть відображатись оформлені замовлення -->
-              <div id="customerName"></div>
-                <div id="processor"></div>
-                <div id="orderStatus"></div>
+            <button id="userOrder" class="btn btn-primary" data-toggle="modal" data-target="#userOrderModal">
+                Мої замовлення
+            </button>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Зберегти</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
-            </div>
-          </div>
-        </div>
-      </div>
+            <button id="addButton" class="btn btn-primary">Add</button>
+            <button id="cartButton" class="btn btn-primary" data-toggle="modal"
+                data-target="#cartModal">Корзина</button>
+            <button id="exitButton" class="btn btn-primary">Вийти</button>
 
-<!-- Модальне вікно для додавання процесора -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addModalLabel">Додати процесор</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+
+
+            <div class="dropdown" id="loginButtonInHeader">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    Вхід/Реєстрація
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#loginModal">Вхід</a></li>
+                    <li><a class="dropdown-item" href="#" data-toggle="modal"
+                            data-target="#registrationModal">Реєстрація</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label for="processorPhoto">Фото процесора</label>
-                <input type="file" class="form-control-file" id="processorPhoto">
-              </div>
-          <div class="form-group">
-            <label for="processorBrand">Марка процесора</label>
-            <select class="form-control" id="processorBrand">
-              <option value="amd">AMD</option>
-              <option value="intel">Intel</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="processorSocket">Сокет процесора</label>
-            <select class="form-control" id="processorSocket">
-              <option value="am3">AM3</option>
-              <option value="am3+">AM3+</option>
-              <option value="am4">AM4</option>
-              <option value="1155">LGA 1155</option>
-              <option value="1156">LGA 1156</option>
-              <option value="1150">LGA 1150</option>
-              <option value="1151">LGA 1151</option>
-              <option value="1200">LGA 1200</option>
-              <option value="1700">LGA 1700</option>
-              <option value="2011">LGA 2011</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="processorModel">Модель процесора</label>
-            <input type="text" class="form-control" id="processorModel" placeholder="Введіть модель процесора">
-          </div>
-          <div class="form-group">
-            <label for="processorFrequency">Частота</label>
-            <input type="number" class="form-control" id="processorFrequency" placeholder="Введіть частоту (2-5)GHz" min="2" max="5" step="0.1">
-          </div>
-          <div class="form-group">
-            <label for="processorCores">Кількість ядер</label>
-            <input type="number" class="form-control" id="processorCores" placeholder="Введіть кількість ядер">
-          </div>
-          <div class="form-group">
-            <label for="processorTdp">TDP</label>
-            <input type="number" class="form-control" id="processorTdp" placeholder="Введіть TDP процесора">
-          </div>
-          <div class="form-group">
-            <label for="processorPrice">Ціна</label>
-            <input type="number" class="form-control" id="processorPrice" placeholder="Введіть ціну">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
-          <button type="button" class="btn btn-primary" id="saveButton">Зберегти</button>
-        </div>
-      </div>
     </div>
-  </div>
-  
+
+
+    <!-- Модальне вікно  замовлень адміна -->
+    <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderModalLabel">Замовлення</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+
+                <div class="modal-footer">
+                    <button id="saveOrderButton" type="button" class="btn btn-secondary"
+                        data-dismiss="modal">Зберегти</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальне вікно  замовлень користувача -->
+    <div class="modal fade" id="userOrderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderModalLabel">Мої замовлення</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальне вікно для додавання процесора -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Додати процесор</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="processorPhoto">Фото процесора</label>
+                        <input type="file" class="form-control-file" id="processorPhoto">
+                    </div>
+                    <div class="form-group">
+                        <label for="processorBrand">Марка процесора</label>
+                        <select class="form-control" id="processorBrand">
+                            <option value="amd">AMD</option>
+                            <option value="intel">Intel</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="processorSocket">Сокет процесора</label>
+                        <select class="form-control" id="processorSocket">
+                            <option value="am3">AM3</option>
+                            <option value="am3+">AM3+</option>
+                            <option value="am4">AM4</option>
+                            <option value="1155">LGA 1155</option>
+                            <option value="1156">LGA 1156</option>
+                            <option value="1150">LGA 1150</option>
+                            <option value="1151">LGA 1151</option>
+                            <option value="1200">LGA 1200</option>
+                            <option value="1700">LGA 1700</option>
+                            <option value="2011">LGA 2011</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="processorModel">Модель процесора</label>
+                        <input type="text" class="form-control" id="processorModel"
+                            placeholder="Введіть модель процесора">
+                    </div>
+                    <div class="form-group">
+                        <label for="processorFrequency">Частота</label>
+                        <input type="number" class="form-control" id="processorFrequency"
+                            placeholder="Введіть частоту (2-5)GHz" min="2" max="5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="processorCores">Кількість ядер</label>
+                        <input type="number" class="form-control" id="processorCores"
+                            placeholder="Введіть кількість ядер">
+                    </div>
+                    <div class="form-group">
+                        <label for="processorTdp">TDP</label>
+                        <input type="number" class="form-control" id="processorTdp" placeholder="Введіть TDP процесора">
+                    </div>
+                    <div class="form-group">
+                        <label for="processorPrice">Ціна</label>
+                        <input type="number" class="form-control" id="processorPrice" placeholder="Введіть ціну">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+                    <button type="button" class="btn btn-primary" id="saveButton">Зберегти</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- модальне вікно -->
     <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="cartModalLabel">Корзина</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Вміст корзини -->
-                <p>Тут буде вміст вашої корзини.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
-                <button type="button" class="btn btn-primary">Оформити замовлення</button>
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Корзина</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Вміст корзини -->
+                    <p>Тут буде вміст вашої корзини.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+                    <button type="button" class="btn btn-primary">Оформити замовлення</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <!-- модальне вікно логіну -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
         aria-hidden="true">
@@ -232,8 +257,8 @@
         <div class="row">
             <div class="col-lg-10 order-lg-2 product-block">
                 <!-- Вміст блоку товару -->
-                <div class="row"  id="productList">
-                      
+                <div class="row" id="productList">
+
                 </div>
                 <div class="paginButton" id="paginationControls"></div>
 
@@ -257,8 +282,8 @@
                             <option value="intel">Intel</option>
                         </select>
                     </div>
-                 
-                    
+
+
                     <div class="form-group">
                         <label for="socketFilter">Сокет процесора</label>
                         <select class="form-control" id="socketFilter">
@@ -295,7 +320,7 @@
                      -->
                 </div>
             </div>
-            
+
 
         </div>
     </div>
@@ -325,7 +350,6 @@
 <script src="js/dataAdding.js"></script>
 <script src="js/pagination.js"></script>
 <script src="js/sorting.js"></script>
-
-
+<script src="js/orders.js"></script>
 
 </html>

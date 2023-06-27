@@ -81,7 +81,7 @@ var productInfo = [];
 
 function createProductCards(processors) {
   var productList = document.getElementById('productList');
-  
+
   processors.forEach(function (processor) {
     // Створити елементи карточки товару
     var card = document.createElement('div');
@@ -101,7 +101,7 @@ function createProductCards(processors) {
     description.innerHTML =
       '<strong>Частота процесора:</strong> ' + processor.frequency + ' GHz<br>' +
       '<strong>Сокет процесора:</strong> ' + processor.socket + '<br>' +
-      '<strong>Кількість ядер:</strong> ' + processor.cores + ' ядра ' + '<br>' +  
+      '<strong>Кількість ядер:</strong> ' + processor.cores + ' ядра ' + '<br>' +
       '<strong>TDP:</strong> ' + processor.tdp + ' ват<br>' +
       '<strong>Ціна:</strong> $' + processor.price;
 
@@ -145,8 +145,8 @@ function createProductCards(processors) {
       card: card,
       price: processor.price
     };
-    
-    
+
+
     productInfo.push(product);
   });
 
@@ -197,8 +197,8 @@ function updateCart() {
 
     cartModalBody.appendChild(itemElement);
   });
-  
- 
+
+
 }
 
 // Функція для надсилання даних корзини на бекенд

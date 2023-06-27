@@ -13,7 +13,7 @@ function administrator() {
   }
   cartButton.style.display = 'none';
 
-  orderButton.style.display='inline-block';
+  orderButton.style.display = 'inline-block';
   loginButtonInHeader.style.display = 'none';
   exitButton.style.display = 'inline-block';
 
@@ -21,7 +21,7 @@ function administrator() {
   localStorage.setItem('adminExpiration', Date.now() + 0.1 * 60 * 1000); // Зберегти час збереження на 5 хвилин (5 хвилин * 60 секунд * 1000 мілісекунд)
 }
 
-function user(){
+function user() {
   var addButton = document.getElementById('addButton');
   var cardDeleteButtons = document.getElementsByClassName('deleteButton-in-card');
   var cartButton = document.getElementById('cartButton');
@@ -29,24 +29,26 @@ function user(){
 
   var loginButtonInHeader = document.getElementById('loginButtonInHeader');
   var exitButton = document.getElementById('exitButton');
+  var orderButton = document.getElementById('userOrder');
 
+  orderButton.style.display = 'inline-block';
   cartButton.style.display = 'inline-block';
 
-          addToCartButtons.forEach(function (button) {
-            button.style.display = 'inline-block';
-          });
+  addToCartButtons.forEach(function (button) {
+    button.style.display = 'inline-block';
+  });
 
-          addButton.style.display = 'none';
+  addButton.style.display = 'none';
 
-          for (var i = 0; i < cardDeleteButtons.length; i++) {
-            cardDeleteButtons[i].style.display = 'none';
-          }
+  for (var i = 0; i < cardDeleteButtons.length; i++) {
+    cardDeleteButtons[i].style.display = 'none';
+  }
 
-          loginButtonInHeader.style.display = 'none';
-          exitButton.style.display = 'inline-block';
-          
-          localStorage.setItem('isUser', 'true');
-          localStorage.setItem('userExpiration', Date.now() + 0.1 * 60 * 1000); // Зберегти час збереження на 5 хвилин (5 хвилин * 60 секунд * 1000 мілісекунд)
+  loginButtonInHeader.style.display = 'none';
+  exitButton.style.display = 'inline-block';
+
+  localStorage.setItem('isUser', 'true');
+  localStorage.setItem('userExpiration', Date.now() + 0.1 * 60 * 1000); // Зберегти час збереження на 5 хвилин (5 хвилин * 60 секунд * 1000 мілісекунд)
 
 };
 
@@ -56,7 +58,7 @@ var userID;
 document.getElementById('loginButton').addEventListener('click', function () {
   var email = document.getElementById('emailInput').value;
   var password = document.getElementById('passwordInput').value;
-  
+
   if (email === '1' && password === '1') {
     console.log("admin");
     administrator();
@@ -79,18 +81,18 @@ document.getElementById('loginButton').addEventListener('click', function () {
         var response = JSON.parse(xhr.responseText);
 
         if (response.success) {
-          userID=response.userID;
+          userID = response.userID;
 
-          console.log('Користувач присутній у системі',userID);
+          console.log('Користувач присутній у системі', userID);
           user();
           $('#loginModal').modal('hide'); // Закриття модального вікна
         }
 
-        else{
+        else {
           alert("користувача з такими даними не здайдено\nперевірте дані або зареєструйтесь")
         }
       }
-      
+
     };
     xhr.send(JSON.stringify(data));
     console.log("send data");
