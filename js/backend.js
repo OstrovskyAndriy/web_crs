@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
   host: "127.0.0.1",
   user: "andriy",
   database: "website_db",
-  password: "pakamakafo"
+  password: "pakamakafo123"
 });
 
 connection.connect(err => {
@@ -58,30 +58,29 @@ connection.connect(err => {
     //API логіну
     app.post('/api/login', (req, res) => {
       const { email, password } = req.body;
-
-      const query = `SELECT * FROM users WHERE mail = ? AND password = ?`;
+    
+      const query = `SELECT id FROM users WHERE mail = ? AND password = ?`; // Отримати лише ідентифікатор користувача (id)
       const values = [email, password];
-      console.log(email);
-      console.log(password);
-
-
+    
       connection.query(query, values, (err, results, fields) => {
         if (err) {
           console.log(err);
           res.status(500).json({ success: false, error: "Internal Server Error" });
           return;
         }
-
+    
         if (results.length > 0) {
-          // Користувач знайдений
-
-          res.status(200).json({ success: true });
-        } else {
+          const userID = results[0].id;
+          res.status(200).json({ success: true, userID: userID });
+        }
+        
+        else {
           // Користувача не знайдено
           res.status(404).json({ success: false });
         }
       });
     });
+    
 
     // API додавання процесора
     app.post('/api/adding', (req, res) => {
@@ -152,6 +151,45 @@ connection.connect(err => {
       });
     });
 
+    //API оформлення обраних процесорів
+    app.post('/api/order', (req, res) => {
+      const { orderData, userID, note } = req.body;
+    
+      const orderItems = orderData; // Отримати об'єкт orderData без розпакування
+    
+      const extractedItems = orderItems.map(item => `${item.brand} ${item.name}`); // Витягнути потрібні значення
+    
+      const query = `INSERT INTO orders (user_id, processor, order_status) VALUES (?, ?, ?)`;
+      const values = [userID, extractedItems.join(', '), note]; // Об'єднати значення в рядок
+    
+      connection.query(query, values, (err, results, fields) => {
+        if (err) {
+          console.log(err);
+          res.status(500).json({ success: false, error: "Internal Server Error" });
+          return;
+        }
+    
+        res.status(200).json({ success: true });
+      });
+    });
+    
+    
+    //API виводу замовлень
+    app.get('/api/getOrders', (req, res) => {
+      const query = 'SELECT mail, processor,order_status FROM users INNER JOIN orders ON(users.id=orders.user_id)';
+      console.log(1);
+      connection.query(query, (err, results) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ success: false, error: 'Internal Server Error' });
+          return;
+        }
+    
+        res.status(200).json(results[0]); // Передайте перший рядок результатів
+      });
+    });
+    
+    
     app.listen(port, () => {
       console.log(`Сервер запущено на порті ${port}`);
     });

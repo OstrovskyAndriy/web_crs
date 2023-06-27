@@ -200,3 +200,37 @@ function updateCart() {
   
  
 }
+
+// Функція для надсилання даних корзини на бекенд
+function sendOrderData() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'http://localhost:5500/api/order', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  var order = {
+    orderData: cartItems, // Виправлено
+    userID: userID,
+    note: 'Потрібно оформлення'
+  };
+
+  var orderData = JSON.stringify(order);
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      console.log('Замовлення успішно відправлено');
+      cartItems = [];
+      updateCart();
+    } else {
+      console.error('Помилка при відправленні замовлення');
+    }
+  };
+
+  xhr.send(orderData);
+}
+
+
+// Додати обробник події для кнопки "Оформити замовлення"
+var orderButton = document.querySelector('#cartModal .modal-footer .btn-primary');
+orderButton.addEventListener('click', function () {
+  sendOrderData();
+});

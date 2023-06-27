@@ -17,13 +17,18 @@
         <h1>Pentium Zone</h1>
       
         <div class="header-buttons">
+            <button id="order" class="btn btn-primary" data-toggle="modal" data-target="#orderModal">
+                Замовлення
+              </button>
+              
           <button id="addButton" class="btn btn-primary">Add</button>
           <button id="cartButton" class="btn btn-primary" data-toggle="modal" data-target="#cartModal">Корзина</button>
-
-          <button id="exitButton" class="btn btn-primary" >Вийти</button>
+          <button id="exitButton" class="btn btn-primary">Вийти</button>
+      
+          
 
           <div class="dropdown" id="loginButtonInHeader">
-            <button  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
               Вхід/Реєстрація
             </button>
             <ul class="dropdown-menu">
@@ -31,9 +36,36 @@
               <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#registrationModal">Реєстрація</a></li>
             </ul>
           </div>
+      
+        
         </div>
       </div>
+      
 
+      <!-- Модальне вікно збережених замовлень -->
+      <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="orderModalLabel">Збережені замовлення</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- Тут будуть відображатись оформлені замовлення -->
+              <div id="customerName"></div>
+                <div id="processor"></div>
+                <div id="orderStatus"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Зберегти</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 <!-- Модальне вікно для додавання процесора -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">

@@ -5,6 +5,7 @@ function administrator() {
   var cartButton = document.getElementById('cartButton');
   var loginButtonInHeader = document.getElementById('loginButtonInHeader');
   var exitButton = document.getElementById('exitButton');
+  var orderButton = document.getElementById('order')
 
   addButton.style.display = 'inline-block';
   for (var i = 0; i < cardDeleteButtons.length; i++) {
@@ -12,6 +13,7 @@ function administrator() {
   }
   cartButton.style.display = 'none';
 
+  orderButton.style.display='inline-block';
   loginButtonInHeader.style.display = 'none';
   exitButton.style.display = 'inline-block';
 
@@ -48,6 +50,9 @@ function user(){
 
 };
 
+
+var userID;
+
 document.getElementById('loginButton').addEventListener('click', function () {
   var email = document.getElementById('emailInput').value;
   var password = document.getElementById('passwordInput').value;
@@ -72,8 +77,11 @@ document.getElementById('loginButton').addEventListener('click', function () {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
         var response = JSON.parse(xhr.responseText);
+
         if (response.success) {
-          console.log('Користувач присутній у системі');
+          userID=response.userID;
+
+          console.log('Користувач присутній у системі',userID);
           user();
           $('#loginModal').modal('hide'); // Закриття модального вікна
         }
