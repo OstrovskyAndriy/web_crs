@@ -2,7 +2,7 @@ var orderButton = document.getElementById('order');
 orderButton.addEventListener('click', function () {
     // AJAX-запит на сервер
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:3306/api/getOrders', true);
+    xhr.open('GET', 'http://localhost:5500/api/getOrders', true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
@@ -86,7 +86,7 @@ saveOrderButton.addEventListener('click', function () {
 
 function saveOrders(updatedOrders) {
     var xhr = new XMLHttpRequest();
-    xhr.open('PUT', 'http://localhost:3306/api/updateOrders', true);
+    xhr.open('PUT', 'http://localhost:5500/api/updateOrders', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
@@ -104,7 +104,7 @@ function saveOrders(updatedOrders) {
 var userOrderButton = document.getElementById('userOrder');
 userOrderButton.addEventListener('click', function () {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:3306/api/getUserOrders/' + userID, true);
+    xhr.open('GET', 'http://localhost:5500/api/getUserOrders/' + userID, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);

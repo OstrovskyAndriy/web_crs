@@ -62,7 +62,7 @@ document.getElementById('loginButton').addEventListener('click', function () {
       password: password
     };
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3306/api/login', true);
+    xhr.open('POST', 'http://localhost:5500/api/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {

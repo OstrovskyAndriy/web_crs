@@ -21,7 +21,7 @@ $(document).ready(function () {
       };
       // Виконання AJAX запиту на бекенд
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://localhost:3306/api/registration", true);
+      xhr.open("POST", "http://localhost:5500/api/registration", true);
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {

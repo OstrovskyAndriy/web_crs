@@ -30,7 +30,7 @@ function pagination() {
   // Викликати функцію оновлення пагінації після завантаження товарів з бази даних
   document.addEventListener('DOMContentLoaded', function () {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:3306/api/getprocessors', true);
+    xhr.open('GET', 'http://localhost:5500/api/getprocessors', true);
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
         var processors = JSON.parse(xhr.responseText);

@@ -50,7 +50,7 @@ document.getElementById('exitButton').addEventListener('click', function () {
 //відображення товарів з бд на сторінці
 document.addEventListener('DOMContentLoaded', function () {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://localhost:3306/api/getprocessors', true);
+  xhr.open('GET', 'http://localhost:5500/api/getprocessors', true);
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var processors = JSON.parse(xhr.responseText);
@@ -129,7 +129,7 @@ function createProductCards(processors) {
 function deleteProduct(productId) {
   // Виконати AJAX-запит до сервера для видалення товару за ідентифікатором productId
   var xhr = new XMLHttpRequest();
-  xhr.open('DELETE', 'http://localhost:3306/api/deleteProduct/' + productId, true);
+  xhr.open('DELETE', 'http://localhost:5500/api/deleteProduct/' + productId, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -167,7 +167,7 @@ function updateCart() {
 // Функція для надсилання даних корзини на бекенд
 function sendOrderData() {
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost:3306/api/order', true);
+  xhr.open('POST', 'http://localhost:5500/api/order', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   var order = {
     orderData: cartItems, // Виправлено
