@@ -69,7 +69,6 @@ socketFilterSelect.addEventListener('change', function () {
   filteredCards.forEach(function (card) {
     productList.appendChild(card);
   });
-
   pagination();
 });
 
@@ -97,12 +96,10 @@ nameFilter.addEventListener('keydown', function (event) {
 // Функція для застосування фільтрів
 function applyFilters() {
   var selectedName = nameFilter.value.toLowerCase();
-
   var filteredProducts = productInfo.filter(function (product) {
     var processorName = product.card.querySelector('.card-title').textContent.toLowerCase();
     return processorName.includes(selectedName);
   });
-
   // Перемалювати карточки товарів з відфільтрованими даними
   var filteredCards = filteredProducts.map(function (product) {
     return product.card;
@@ -111,7 +108,6 @@ function applyFilters() {
   filteredCards.forEach(function (card) {
     productList.appendChild(card);
   });
-
   pagination();
 }
 

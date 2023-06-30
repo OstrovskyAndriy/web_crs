@@ -19,8 +19,6 @@ $(document).ready(function () {
     $("#clockSpeedMax").text($("#clockSpeedSlider").slider("values", 1));
   });
 
-  
-
   // слайдер ядер процесора
 $(document).ready(function () {
     // Масив допустимих варіантів кількості ядер

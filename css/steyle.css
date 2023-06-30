@@ -5,7 +5,6 @@
   padding: 10px;
   background-color: #f2f2f2;
 }
-
 .header-buttons {
   display: flex;
   gap: 10px;
@@ -15,11 +14,9 @@
   display: none;
   background-color: rgba(255, 0, 0, 0.847);
 }
-
 .add-to-cart {
   display: none;
 }
-
 /* Блок товару */
 .product-block {
   display: flex;
@@ -28,7 +25,6 @@
   background-color: #f9f9f9;
   flex-wrap: wrap; /* Дозволяє блокам переноситись на новий рядок */
 }
-
 /* Блок критеріїв пошуку */
 .search-block {
   display: flex;
@@ -36,27 +32,22 @@
   padding: 10px;
   background-color: #f9f9f9;
 }
-
 /* Нижній блок (футер) */
 .footer {
   padding: 10px;
   background-color: #f2f2f2;
   clear: both; /* Очищає обидва боки, щоб футер не налазив на блоки товарів */
 }
-
-
 /* Блок товару */
 .product-block {
   background-color: #f9f9f9;
   min-height: 500px; /* Мінімальна висота поля для товарів */
 }
-
 /* Бокове меню */
 .sidebar {
   background-color: #3434;
   min-height: 500px; /* Мінімальна висота бокового меню */
 }
-
 #addButton {
   display: none;
   background-color: rgba(255, 0, 0, 0.847);
@@ -69,46 +60,22 @@
   display: none;
   background-color: rgba(255, 98, 0, 0.666);
 }
-
 #productList .deleteButton-in-card {
   display: none;
   background-color: rgba(255, 0, 0, 0.847);
 }
-
 .card {
   margin: 5px; /* Відступ знизу між карточками */
   transition: transform 0.3s;
   position: relative;
-
 }
-
 #exitButton{
   display: none;
 }
 .card:hover {
   transform: scale(1.05); /* Збільшення карточки при наведенні */
   z-index: 9999; /* Встановлюємо високе значення z-index */
-
 }
-
 #deleteButton-in-card {
   display: none;
-}
-
-#paginationControls {
-  margin-top: 20px; /* Змінено margin-bottom на margin-top */
-  text-align: right; /* Змінено text-align на right */
-}
-
-.paginationButton {
-  margin: 0 5px;
-  display: inline-block; /* Додано display: inline-block для кнопок */
-}
-
-.page-divider {
-  clear: both; /* Додано цей стиль для очищення попередніх обтікань */
-  height: 1px;
-  background-color: #ccc;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }

@@ -1,5 +1,4 @@
 const mysql = require('mysql2');
-
 const connection = mysql.createConnection({
   host: "127.0.0.1",
   user: "andriy",
@@ -18,7 +17,7 @@ connection.connect(err => {
     const express = require('express');
     const cors = require('cors');
     const app = express();
-    const port = 5500;
+    const port = 3001;
 
     app.use(cors());
     app.use(bodyParser.json());
@@ -81,7 +80,6 @@ connection.connect(err => {
       });
     });
 
-
     // API додавання процесора
     app.post('/api/adding', (req, res) => {
       const { brand, socket, model, frequency, cores, tdp, price, filePath } = req.body;
@@ -112,7 +110,6 @@ connection.connect(err => {
       });
     });
 
-
     //АРІ виводу товарів
     app.get('/api/getprocessors', (req, res) => {
       const query = 'SELECT * FROM processors';
@@ -128,7 +125,6 @@ connection.connect(err => {
         res.send(results);
       });
     });
-
 
     //API видалення товару
     app.delete('/api/deleteProduct/:productId', (req, res) => {
@@ -228,7 +224,6 @@ connection.connect(err => {
         res.status(200).json(results);
       });
     });
-
 
     app.listen(port, () => {
       console.log(`Сервер запущено на порті ${port}`);
