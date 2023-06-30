@@ -35,7 +35,7 @@ document.getElementById('saveButton').addEventListener('click', function () {
         filePath: filePath
       };
       var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'http://localhost:3001/api/adding', true);
+      xhr.open('POST', 'http://localhost:3306/api/adding', true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
