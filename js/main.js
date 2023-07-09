@@ -44,6 +44,7 @@ document.getElementById('processorBrand').addEventListener('change', function ()
 
 document.getElementById('exitButton').addEventListener('click', function () {
   localStorage.setItem('isAdmin', 'false');
+  localStorage.setItem('isUser', 'false');
   location.reload();
 });
 
@@ -104,9 +105,11 @@ function createProductCards(processors) {
     image.src = processor.photo_path;
 
     deleteButton.addEventListener('click', function () {
+      if(confirm("Видалити процесор?")){
       deleteProduct(processor.id);
       card.remove();
       pagination();
+      }
     });
     addToCartButton.addEventListener('click', function () {
       addToCart(processor.id);

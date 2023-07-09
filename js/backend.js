@@ -1,9 +1,9 @@
 const mysql = require('mysql2');
 const connection = mysql.createConnection({
   host: "127.0.0.1",
-  user: "andriy",
+  user: "user",           //замініть user і password на свої
   database: "website_db",
-  password: "pakamakafo123"
+  password: "password"
 });
 
 connection.connect(err => {
